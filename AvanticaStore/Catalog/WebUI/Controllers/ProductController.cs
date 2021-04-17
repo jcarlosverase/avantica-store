@@ -1,14 +1,17 @@
 ﻿using Catalog.Application.Products.Commands;
 using Catalog.Application.Products.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace Catalog.WebUI.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
+    [Route("v1/products")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
